@@ -1,6 +1,7 @@
 import { getStats } from '@lib/utils';
 import DropDown from '@components/ui/DropDown';
 import Button from './Button';
+import Banner from './Banner';
 
 const Sidebar = () => {
 
@@ -26,6 +27,7 @@ const Sidebar = () => {
           <Button variant='primary' className=''>Apply Filters</Button>
         </div>
       </div>
+      <Banner />
     </aside>
   );
 }
