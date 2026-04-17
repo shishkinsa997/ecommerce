@@ -1,3 +1,5 @@
+import Button from './Button';
+
 const Sidebar = () => {
 
   return (
@@ -15,6 +17,7 @@ const Sidebar = () => {
               <input type='number' className='max-w-[48%] rounded-xl ring-1 ring-black/10 bg-black/5 focus:outline-none px-3 py-2' placeholder='5000'/>
             </div>
           </div>
+          <Button variant='primary' className=''>Apply Filters</Button>
         </div>
       </div>
     </aside>
