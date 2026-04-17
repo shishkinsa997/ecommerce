@@ -1,3 +1,5 @@
+import { getStats } from '@lib/utils';
+import DropDown from '@components/ui/DropDown';
 import Button from './Button';
 
 const Sidebar = () => {
@@ -9,6 +11,10 @@ const Sidebar = () => {
         <div className="flex flex-col gap-6 w-full">
           <div className=" flex flex-col gap-2 text-left w-full">
             <h3>Brand</h3>
+            <DropDown
+              placeholder="Select brand"
+              items={  [...getStats().categories]}
+            />
           </div>
           <div className="flex flex-col gap-2 text-left w-full">
             <h3>Price Range</h3>
