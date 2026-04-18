@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { getStats } from '@lib/utils';
 import { Heart, Minus, Plus } from 'lucide-react';
 import Button from '@components/ui/Button';
 
-console.log(getStats());
 const ProductCard = ({
   model,
   price,
@@ -17,9 +15,9 @@ const ProductCard = ({
     ? price.toString().slice(0, -3) + ',' + price.toString().slice(-3)
     : price;
 
-  const [isFavorite, handleFavorite] = useState(false);
+  const [isFav, setIsFav] = useState(false);
 
-  const toggleFavorite = () => {handleFavorite(!isFavorite)};
+  const toggleFavorite = () => {setIsFav(!isFav)};
 
   const [count, setCount] = useState(0);
 
@@ -45,7 +43,7 @@ const ProductCard = ({
             Special Offer
           </span>
         )}
-        { isFavorite
+        { isFav
         ?
         <button onClick={toggleFavorite}
         className="absolute right-2 top-2 rounded-xl bg-[#D4183D] p-2 text-black">
