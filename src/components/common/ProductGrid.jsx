@@ -2,7 +2,7 @@ import Dropdown from '@components/ui/Dropdown';
 import ProductCard from '@components/common/ProductCard';
 import { getStats } from '@lib/utils';
 
-const GridCard = () => {
+const ProductGrid = () => {
   const tvProducts = getStats().filtered.tv;
   return (
     <div className="w-full h-full flex flex-col gap-6">
@@ -26,4 +26,4 @@ const GridCard = () => {
   );
 }
 
-export default GridCard;
+export default ProductGrid;

@@ -1,12 +1,18 @@
-import Header from '../components/layout/Header';
-import MainLayout from '../components/layout/MainLayout';
-import Footer from '../components/layout/Footer';
+import Header from '@components/layout/Header';
+import Footer from '@components/layout/Footer';
+import Sidebar from '@components/layout/Sidebar';
+import ProductGrid from '@components/common/ProductGrid';
 
 const Home = () => {
   return (
     <>
       <Header />
-      <MainLayout />
+        <main className="mx-auto w-full">
+          <div className="max-w-360 mx-auto gap-6 p-8 flex items-start">
+            <Sidebar />
+            <ProductGrid />
+          </div>
+        </main>
       <Footer />
     </>
   );

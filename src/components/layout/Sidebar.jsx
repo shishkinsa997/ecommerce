@@ -1,7 +1,7 @@
 import { getStats } from '@lib/utils';
 import DropDown from '@components/ui/DropDown';
-import Button from './Button';
-import Banner from './Banner';
+import Button from '../ui/Button';
+import Banner from '../ui/Banner';
 
 const Sidebar = () => {
 
