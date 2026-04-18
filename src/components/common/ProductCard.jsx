@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getStats } from '@lib/utils';
-import { Heart } from 'lucide-react';
+import { Heart, Minus, Plus } from 'lucide-react';
 import Button from '@components/ui/Button';
 
 console.log(getStats());
@@ -13,10 +13,23 @@ const ProductCard = ({
 }) => {
   const mainImage = images?.[0];
 
+  const formattedPrice = price.toString().length > 3
+    ? price.toString().slice(0, -3) + ',' + price.toString().slice(-3)
+    : price;
+
   const [isFavorite, handleFavorite] = useState(false);
 
-  const toggleFavorite = () => handleFavorite(!isFavorite);
+  const toggleFavorite = () => {handleFavorite(!isFavorite)};
 
+  const [count, setCount] = useState(0);
+
+  const handleCart = (calc) => {
+    if (calc === 'add') {
+      setCount(count + 1);
+    } else if (calc === 'subtract') {
+      setCount(Math.max(0, count - 1));
+    }
+  };
 
   return (
     <article className="group w-full max-w-66 overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition hover:shadow-lg">
@@ -49,11 +62,30 @@ const ProductCard = ({
 
       <div className="flex flex-col gap-1 p-4">
         <p className="text-sm/5 text-gray-500">{brand}</p>
-        <h3 className="h-13 text-lg font-semibold text-black">
+        <h3 className="h-13 line-clamp-2 text-lg font-semibold text-black">
           {model}
         </h3>
-        <p className="text-xl/7 text-gray-900">${price}</p>
-          <Button variant='primary' className=''>Add to Cart</Button>
+        <p className="text-xl/7 text-gray-900">${formattedPrice}</p>
+
+        <div className="flex items-center justify-between gap-2">
+          { count === 0
+          ?
+            <Button onClick={() => handleCart('add')} variant='primary' className='flex-1'>Add to Cart</Button>
+          :
+            <>
+            <Button onClick={() => handleCart('subtract')} variant='minus' className=''>
+              <Minus size={16}/>
+            </Button>
+            <span>
+              <span>{count} </span>
+              in cart
+            </span>
+            <Button onClick={() => handleCart('add')} variant='plus' className=''>
+              <Plus size={16} color="#fff"/>
+            </Button>
+            </>
+          }
+        </div>
       </div>
     </article>
   );

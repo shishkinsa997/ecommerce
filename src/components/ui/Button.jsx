@@ -10,7 +10,8 @@ const Button = ({
 
   const variants = {
     primary: "h-10 bg-black text-white hover:bg-gray-800",
-    outline: "border border-gray-300 bg-transparent hover:bg-gray-500",
+    plus: "p-3 bg-black hover:bg-gray-500",
+    minus: "p-3 bg-[#ECEEF2] hover:bg-gray-300",
     danger: "bg-red-600 text-white hover:bg-red-700 ",
   };
 
