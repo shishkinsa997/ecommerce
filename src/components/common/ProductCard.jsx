@@ -30,7 +30,7 @@ const ProductCard = ({
   };
 
   return (
-    <article className="group w-full max-w-66 overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition hover:shadow-lg">
+    <article className="group w-full overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition hover:shadow-lg">
       <div className="relative aspect-square overflow-hidden bg-gray-100">
         <img
           src={mainImage}

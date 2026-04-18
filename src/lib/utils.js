@@ -30,6 +30,7 @@ export const getStats = () => {
   const laptopProducts = filterProducts("category", "laptop");
 
   const filtered = {
+    all: products,
     tv: tvProducts,
     phone: phoneProducts,
     laptop: laptopProducts,

@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Header />
         <main className="mx-auto w-full">
-          <div className="max-w-360 mx-auto gap-6 p-8 flex items-start">
+          <div className="max-w-360 mx-auto gap-6 p-8 flex items-start flex-col lg:flex-row">
             <Sidebar />
             <ProductGrid />
           </div>
