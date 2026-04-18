@@ -1,7 +1,8 @@
 import { ShoppingCart, User } from 'lucide-react';
 const Header = () => {
   return (
-    <header className="sticky top-0 mx-auto w-full after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-black/10 after:content-['']">
+    <header className="sticky z-1 top-0 mx-auto w-full bg-white
+    after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-black/10 after:content-['']">
       <div className="max-w-360 mx-auto px-8 py-4 flex items-center justify-between">
           <nav className="flex items-center gap-8">
             <a href="/tv" className="text-[24px]/8">TechStore</a>
