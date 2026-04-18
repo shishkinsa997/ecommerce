@@ -14,7 +14,7 @@ const Sidebar = () => {
             <h3>Brand</h3>
             <DropDown
               placeholder="Select brand"
-              items={  [...getStats().categories]}
+              items={  [...getStats().values.brands]}
             />
           </div>
           <div className="flex flex-col gap-2 text-left w-full">
