@@ -1,4 +1,5 @@
 import Button from "../ui/Button";
+import Link from "../ui/Link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,25 +11,25 @@ const Footer = () => {
           <div className="flex flex-col gap-2">
             <h3 className="text-lg">About</h3>
             <ul className="flex flex-col gap-2 text-black/50">
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/careers">Careers</a></li>
-              <li><a href="/press">Press</a></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
+              <li><Link href="/press">Press</Link></li>
             </ul>
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="text-lg">Support</h3>
             <ul className="flex flex-col gap-2 text-black/50">
-              <li><a href="/support">Contact Us</a></li>
-              <li><a href="/faqs">FAQs</a></li>
-              <li><a href="/shipping">Shipping</a></li>
+              <li><Link href="/support">Contact Us</Link></li>
+              <li><Link href="/faqs">FAQs</Link></li>
+              <li><Link href="/shipping">Shipping</Link></li>
             </ul>
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="text-lg">Legal</h3>
             <ul className="flex flex-col gap-2 text-black/50">
-              <li><a href="/privacy">Privacy Policy</a></li>
-              <li><a href="/terms">Terms of Service</a></li>
-              <li><a href="/returns">Returns</a></li>
+              <li><Link href="/privacy">Privacy Policy</Link></li>
+              <li><Link href="/terms">Terms of Service</Link></li>
+              <li><Link href="/returns">Returns</Link></li>
             </ul>
           </div>
           <div className="flex flex-col gap-2">
