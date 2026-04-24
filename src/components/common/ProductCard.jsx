@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Heart, Minus, Plus } from 'lucide-react';
+import { formattedPrice } from '@lib/utils';
 import Button from '@components/ui/Button';
 
 const ProductCard = ({
@@ -10,15 +11,11 @@ const ProductCard = ({
   const { id, model, price, images, isSpecialOffer, brand } = product
   const mainImage = images?.[0];
 
-  const formattedPrice = price.toString().length > 3
-    ? price.toString().slice(0, -3) + ',' + price.toString().slice(-3)
-    : price;
-
   const qty = cart[id] || 0
 
   const [isFav, setIsFav] = useState(false);
   const [count, setCount] = useState(qty || 0);
-  
+
   const toggleFavorite = () => {setIsFav(!isFav)};
 
   const handleCart = (action, id) => {
@@ -79,7 +76,7 @@ const ProductCard = ({
         <h3 className="h-13 line-clamp-2 text-lg font-semibold text-black">
           {model}
         </h3>
-        <p className="text-xl/7 text-gray-900">${formattedPrice}</p>
+        <p className="text-xl/7 text-gray-900">{formattedPrice(price)}</p>
 
         <div className="flex items-center justify-between gap-2">
           { count === 0

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Trash2, Minus, Plus } from 'lucide-react';
+import { formattedPrice } from '@lib/utils';
 import Button from '@components/ui/Button';
 
 const ProductCardRow = ({
@@ -7,17 +8,12 @@ const ProductCardRow = ({
   cart,
   ...product
 }) => {
-  const { id, model, price, images, isSpecialOffer, brand } = product
+  const { id, model, price, images, brand } = product
   const mainImage = images?.[0];
 
   const [count, setCount] = useState(cart[id]);
 
   const amount = price * count
-
-  const formattedPrice = amount.toString().length > 3
-    ? amount.toString().slice(0, -3) + ',' + amount.toString().slice(-3)
-    : amount;
-
 
   const handleCart = (action, id) => {
     if (action === 'add') {
@@ -80,7 +76,7 @@ const ProductCardRow = ({
             <Button onClick={() => handleCart('remove', id)} variant='danger'>
               <Trash2 size={20} color="#D4183D"/>
             </Button>
-          <p className="text-xl/7 text-gray-900 mb-2">${formattedPrice}</p>
+          <p className="text-xl/7 text-gray-900 mb-2">{formattedPrice(amount)}</p>
         </div>
       </div>
     </article>

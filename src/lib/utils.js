@@ -6,6 +6,15 @@ export const cn = (...inputs) => {
   return twMerge(clsx(inputs));
 };
 
+export const formattedPrice = (price, d=0) => {
+  const indent = d === 0 ? 3 : 4
+  price = price.toFixed(d)
+
+  return price.toString().length > (indent + d)
+    ? '$' + price.toString().slice(0, -indent - d) + ',' + price.toString().slice(-indent - d)
+    : '$' + price;
+}
+
 export const getStats = () => {
   const totalProducts = products.length;
 
