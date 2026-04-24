@@ -3,7 +3,7 @@ import { ShoppingCart, User } from 'lucide-react';
 import { cn } from '@lib/utils';
 import Link from "../ui/Link";
 
-const Header = ({ cart }) => {
+const Header = ({ setPageType, pageType, cart }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
   const activeStyle = 'text-black max-sm:border-b-3 max-sm:border-black'
   const underlineStyle = 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-black/10 after:content-[""]'
@@ -24,9 +24,21 @@ const Header = ({ cart }) => {
       , isMobile ? underlineStyle : null
     )}>
       <ul className="flex items-center justify-between w-full gap-6 text-gray-500 max-sm:gap-4 max-sm:py-3">
-        <li className='flex-1'><Link href="/tv" variant="header" className={activeStyle}>TV</Link></li>
-        <li className='flex-1'><Link href="/phone" variant="header">Phone</Link></li>
-        <li className='flex-1'><Link href="/laptop" variant="header">Laptop</Link></li>
+        <li className='flex-1'>
+          <Link href="/tv" variant="header" className={pageType === 'tv' ? activeStyle : null} setPageType={setPageType}>
+            TV
+          </Link>
+        </li>
+        <li className='flex-1'>
+          <Link href="/phone" variant="header" className={pageType === 'phone' ? activeStyle : null} setPageType={setPageType}>
+            Phone
+          </Link>
+        </li>
+        <li className='flex-1'>
+          <Link href="/laptop" variant="header" className={pageType === 'laptop' ? activeStyle : null} setPageType={setPageType}>
+            Laptop
+          </Link>
+        </li>
       </ul>
     </nav>
   );
@@ -38,12 +50,16 @@ const Header = ({ cart }) => {
         )}>
       <div className="max-w-360 mx-auto px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <a href="/tv" className="text-[24px]/8">TechStore</a>
+            <Link href="/tv" className="text-[24px]/8 text-black" setPageType={setPageType} page='tv'>TechStore</Link>
             {!isMobile && nav}
           </div>
           <div className="flex items-center gap-4">
-            <Link variant="headerIcon" className='relative'>{Object.keys(cart).length > 0 && cartCount}<ShoppingCart /></Link>
-            <Link variant="headerIcon"><User /></Link>
+            <Link href="/cart" variant="headerIcon" className='relative' setPageType={setPageType} page='cart'>
+              {Object.keys(cart).length > 0 && cartCount}<ShoppingCart />
+            </Link>
+            <Link href="/user" variant="headerIcon" setPageType={setPageType} page='user'>
+              <User />
+            </Link>
           </div>
       </div>
     </header>

@@ -1,5 +1,6 @@
-import TvListing from '@pages/tvListing';
-import PhoneListing from '@pages/tvListing';
+import TvListing from '@pages/TvListing';
+import PhoneListing from '@pages/PhoneListing';
+import LaptopListing from '@pages/LaptopListing';
 import Cart from '@pages/Cart';
 
 const Content = ({ pageType, setPageType, cart, setCart }) => {
