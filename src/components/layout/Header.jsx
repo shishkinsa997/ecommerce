@@ -7,8 +7,10 @@ const Header = ({ setPageType, pageType, cart }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
   const activeStyle = 'text-black max-sm:border-b-3 max-sm:border-black'
   const underlineStyle = 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-black/10 after:content-[""]'
+  let count = Object.values(cart).reduce((acc, x) => acc + x, 0)
+
   const cartCount = (
-    <span className='absolute -top-1 -right-1 ring rounded-full size-5 text-center text-sm text-white bg-black'>{Object.keys(cart).length}</span>
+    <span className='absolute -top-1 -right-1 ring rounded-full size-5 text-center text-[12px]/5 text-white bg-black'>{count}</span>
   )
 
   useEffect(() => {
@@ -50,14 +52,14 @@ const Header = ({ setPageType, pageType, cart }) => {
         )}>
       <div className="max-w-360 mx-auto px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link href="/tv" className="text-[24px]/8 text-black" setPageType={setPageType} page='tv'>TechStore</Link>
+            <Link href="/tv" className="text-[24px]/8 text-black" setPageType={setPageType}>TechStore</Link>
             {!isMobile && nav}
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/cart" variant="headerIcon" className='relative' setPageType={setPageType} page='cart'>
-              {Object.keys(cart).length > 0 && cartCount}<ShoppingCart />
+            <Link href="/cart" variant="headerIcon" className='relative' setPageType={setPageType}>
+              {count > 0 && cartCount}<ShoppingCart />
             </Link>
-            <Link href="/user" variant="headerIcon" setPageType={setPageType} page='user'>
+            <Link href="/user" variant="headerIcon" setPageType={setPageType}>
               <User />
             </Link>
           </div>
