@@ -13,7 +13,7 @@ const Button = ({
     primaryLarge: "h-12 bg-black text-white hover:bg-gray-800",
     plus: "p-3 bg-black hover:bg-gray-500",
     minus: "p-3 bg-[#ECEEF2] hover:bg-gray-300",
-    danger: "bg-red-600 text-white hover:bg-red-700 ",
+    danger: "p-3 text-[#D4183D] hover:bg-[#D4183D]/10",
   };
 
   return (

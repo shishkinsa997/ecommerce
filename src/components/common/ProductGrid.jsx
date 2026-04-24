@@ -2,7 +2,7 @@ import Dropdown from '@components/ui/Dropdown';
 import ProductCard from '@components/common/ProductCard';
 import { getStats } from '@lib/utils';
 
-const ProductGrid = ({ pageType, setCart }) => {
+const ProductGrid = ({ pageType, setCart, cart }) => {
   const filteredProducts = getStats().filtered[pageType] || [];
   const sortedProducts = filteredProducts.sort((a, b) => a.price - b.price);
   return (
@@ -20,7 +20,7 @@ const ProductGrid = ({ pageType, setCart }) => {
       </header>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedProducts.map((product) => (
-          <ProductCard key={product.id} setCart={setCart} {...product}/>
+          <ProductCard key={product.id} setCart={setCart} cart={cart} {...product}/>
         ))}
       </div>
     </div>

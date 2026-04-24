@@ -1,10 +1,10 @@
 import Button from '@components/ui/Button';
 
-const EmptyCart = () => {
+const EmptyCart = ( { setPageType } ) => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4 py-16">
       <p className="text-lg text-black/50">Your cart is empty</p>
-      <Button variant="primaryLarge">
+      <Button variant="primaryLarge" onClick={() => setPageType('tv')}>
         Continue Shopping
       </Button>
     </div>

@@ -4,6 +4,7 @@ import Button from '@components/ui/Button';
 
 const ProductCard = ({
   setCart,
+  cart,
   ...product
 }) => {
   const { id, model, price, images, isSpecialOffer, brand } = product
@@ -13,11 +14,12 @@ const ProductCard = ({
     ? price.toString().slice(0, -3) + ',' + price.toString().slice(-3)
     : price;
 
+  const qty = cart[id] || 0
+
   const [isFav, setIsFav] = useState(false);
-
+  const [count, setCount] = useState(qty || 0);
+  
   const toggleFavorite = () => {setIsFav(!isFav)};
-
-  const [count, setCount] = useState(0);
 
   const handleCart = (action, id) => {
     if (action === 'add') {
