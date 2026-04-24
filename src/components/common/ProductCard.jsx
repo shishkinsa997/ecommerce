@@ -3,12 +3,10 @@ import { Heart, Minus, Plus } from 'lucide-react';
 import Button from '@components/ui/Button';
 
 const ProductCard = ({
-  model,
-  price,
-  images,
-  isSpecialOffer,
-  brand,
+  setCart,
+  ...product
 }) => {
+  const { id, model, price, images, isSpecialOffer, brand } = product
   const mainImage = images?.[0];
 
   const formattedPrice = price.toString().length > 3
@@ -21,11 +19,27 @@ const ProductCard = ({
 
   const [count, setCount] = useState(0);
 
-  const handleCart = (calc) => {
-    if (calc === 'add') {
+  const handleCart = (action, id) => {
+    if (action === 'add') {
       setCount(count + 1);
-    } else if (calc === 'subtract') {
+      setCart(prev => ({
+        ...prev,
+        [id]: count + 1
+      }))
+    } else if (action === 'subtract') {
       setCount(Math.max(0, count - 1));
+      setCart(prev => {
+        if (prev[id] > 1) {
+          return {
+            ...prev,
+            [id]: Math.max(0, count - 1)
+          }
+        } else {
+          const newCart = { ...prev }
+          delete newCart[id]
+          return newCart
+        }
+      })
     }
   };
 
@@ -68,17 +82,17 @@ const ProductCard = ({
         <div className="flex items-center justify-between gap-2">
           { count === 0
           ?
-            <Button onClick={() => handleCart('add')} variant='primary' className='flex-1'>Add to Cart</Button>
+            <Button onClick={() => handleCart('add', id)} variant='primary' className='flex-1'>Add to Cart</Button>
           :
             <>
-            <Button onClick={() => handleCart('subtract')} variant='minus' className=''>
+            <Button onClick={() => handleCart('subtract', id)} variant='minus' className=''>
               <Minus size={16}/>
             </Button>
             <span>
               <span>{count} </span>
               in cart
             </span>
-            <Button onClick={() => handleCart('add')} variant='plus' className=''>
+            <Button onClick={() => handleCart('add', id)} variant='plus' className=''>
               <Plus size={16} color="#fff"/>
             </Button>
             </>

@@ -1,11 +1,11 @@
 import Sidebar from '@components/layout/Sidebar';
 import ProductGrid from '@components/common/ProductGrid';
 
-const PhoneListing  = ({ pageType, setPageType, cart, setCart }) => {
+const PhoneListing = ({ pageType, setPageType, cart, setCart }) => {
   return (
     <>
       <Sidebar />
-      <ProductGrid pageType={pageType} />
+      <ProductGrid cart={cart} setCart={setCart} pageType={pageType} setPageType={setPageType} />
     </>
   );
 }
