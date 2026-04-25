@@ -10,6 +10,7 @@ const Sidebar = ({ pageType, setFilteredProducts }) => {
   const [select, setSelect] = useState('Select brand')
   const [min, setMin] = useState(0)
   const [max, setMax] = useState(5000)
+  const [isBanner, setIsBanner] = useState(true)
 
   const applyFilters = () => {
       setFilteredProducts(prev => {
@@ -51,7 +52,7 @@ const Sidebar = ({ pageType, setFilteredProducts }) => {
           <Button variant='primary' onClick={applyFilters}>Apply Filters</Button>
         </div>
       </div>
-      <Banner />
+      {isBanner && <Banner setIsBanner={setIsBanner}/>}
     </aside>
   );
 }
