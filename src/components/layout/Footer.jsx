@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer className="relative w-full mx-auto mt-auto after:absolute after:top-0 after:left-0 after:w-full after:h-0.5 after:bg-black/10 after:content-['']">
-      <div className="max-w-360 mx-auto p-8 flex flex-col items-center">
+      <div className="max-w-360 mx-auto p-8 max-lg:px-4 flex flex-col items-center">
         <div className="w-full grid grid-cols-4 gap-8 mb-4 max-lg:grid-cols-2 max-md:grid-cols-1">
           <div className="flex flex-col gap-2">
             <h3 className="text-lg">About</h3>

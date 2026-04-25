@@ -10,7 +10,7 @@ const Header = ({ setPageType, pageType, cart }) => {
   let count = Object.values(cart).reduce((acc, x) => acc + x, 0)
 
   const cartCount = (
-    <span className='absolute -top-1 -right-1 ring rounded-full size-5 text-center text-[12px]/5 text-white bg-black'>{count}</span>
+    <span className='absolute -top-1 -right-1 ring rounded-full size-5 text-center text-[0.7rem]/5 text-white bg-black'>{count}</span>
   )
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Header = ({ setPageType, pageType, cart }) => {
           "sticky z-1 top-0 mx-auto w-full max-sm:pb-3 bg-white",
           underlineStyle
         )}>
-      <div className="max-w-360 mx-auto px-8 py-4 flex items-center justify-between">
+      <div className="max-w-360 mx-auto px-8 py-4 max-lg:px-4 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/tv" className="text-[24px]/8 text-black" setPageType={setPageType}>TechStore</Link>
             {!isMobile && nav}
