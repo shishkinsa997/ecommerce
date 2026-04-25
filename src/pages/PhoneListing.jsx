@@ -7,7 +7,7 @@ const PhoneListing = ({ pageType, setPageType, cart, setCart }) => {
   const [filteredProducts, setFilteredProducts] = useState(getStats().filtered[pageType] || [])
   return (
     <>
-      <Sidebar filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts}/>
+      <Sidebar pageType={pageType} filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts}/>
       <ProductGrid
         cart={cart}
         setCart={setCart}

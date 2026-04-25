@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import Dropdown from '@components/ui/Dropdown';
 import ProductCard from '@components/common/ProductCard';
-import { useState } from 'react';
 
 const ProductGrid = ({ setCart, cart, filteredProducts }) => {
   const [select, setSelect] = useState('Low to High')

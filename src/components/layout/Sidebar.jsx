@@ -1,9 +1,31 @@
+import { useState } from 'react';
 import { getStats } from '@lib/utils';
 import DropDown from '@components/ui/DropDown';
-import Button from '../ui/Button';
-import Banner from '../ui/Banner';
+import Button from '@components/ui/Button';
+import Banner from '@components/ui/Banner';
 
-const Sidebar = () => {
+const Sidebar = ({ pageType, setFilteredProducts }) => {
+  const brands = ['All brands', ...getStats().values.brands]
+  const allProducts = getStats().filtered[pageType]
+  const [select, setSelect] = useState('Select brand')
+  const [min, setMin] = useState(0)
+  const [max, setMax] = useState(5000)
+
+  const applyFilters = () => {
+      setFilteredProducts(prev => {
+        let list = allProducts
+        list = list.filter((x) => {
+          return x.price >= Number(min) && x.price <= Number(max)
+        })
+        if (select === 'All brands' || select === 'Select brand') {
+          return list
+        } else {
+          return list.filter((x) => {
+            return x.brand === select
+          })
+        }
+      })
+  }
 
   return (
     <aside className="max-w-full w-full h-full flex flex-col items-start gap-4 lg:max-w-64">
@@ -14,17 +36,19 @@ const Sidebar = () => {
             <h3>Brand</h3>
             <DropDown
               placeholder="Select brand"
-              items={  [...getStats().values.brands]}
+              items={brands}
+              select={select}
+              setSelect={setSelect}
             />
           </div>
           <div className="flex flex-col gap-2 text-left w-full">
             <h3>Price Range</h3>
             <div className='flex justify-between gap-2'>
-              <input type='number' className='max-w-[48%] flex-1 rounded-xl ring-1 ring-black/10 bg-black/5 focus:outline-none px-3 py-2' placeholder='0'/>
-              <input type='number' className='max-w-[48%] flex-1 rounded-xl ring-1 ring-black/10 bg-black/5 focus:outline-none px-3 py-2' placeholder='5000'/>
+              <input type='number' onChange={(e) => setMin(Number(e.target.value))} className='max-w-[48%] flex-1 rounded-xl ring-1 ring-black/10 bg-black/5 focus:outline-none px-3 py-2' placeholder='0'/>
+              <input type='number' onChange={(e) => setMax(Number(e.target.value) || 5000)} className='max-w-[48%] flex-1 rounded-xl ring-1 ring-black/10 bg-black/5 focus:outline-none px-3 py-2' placeholder='5000'/>
             </div>
           </div>
-          <Button variant='primary' className=''>Apply Filters</Button>
+          <Button variant='primary' onClick={applyFilters}>Apply Filters</Button>
         </div>
       </div>
       <Banner />
