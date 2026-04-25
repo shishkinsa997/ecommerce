@@ -1,10 +1,16 @@
 import Dropdown from '@components/ui/Dropdown';
 import ProductCard from '@components/common/ProductCard';
-import { getStats } from '@lib/utils';
+import { useState } from 'react';
 
-const ProductGrid = ({ pageType, setCart, cart }) => {
-  const filteredProducts = getStats().filtered[pageType] || [];
-  const sortedProducts = filteredProducts.sort((a, b) => a.price - b.price);
+const ProductGrid = ({ setCart, cart, filteredProducts }) => {
+  const [select, setSelect] = useState('Low to High')
+  const sorted = {
+    ['Low to High']: (a, b) => a.price - b.price,
+    ['High to Low']: (a, b) => b.price - a.price
+  }
+
+  const sortedProducts = filteredProducts.sort(sorted[select]);
+
   return (
     <div className="w-full h-full flex flex-col gap-6">
       <header className="flex gap-2 items-center">
@@ -15,7 +21,9 @@ const ProductGrid = ({ pageType, setCart, cart }) => {
         <p className="ml-auto">Sort by:</p>
         <Dropdown
           placeholder="Low to High"
-          items={['Low to High', 'High to Low']}
+          items={Object.keys(sorted)}
+          select={select}
+          setSelect={setSelect}
         />
       </header>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
