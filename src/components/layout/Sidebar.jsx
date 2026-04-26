@@ -3,6 +3,7 @@ import { getStats } from '@lib/utils';
 import DropDown from '@components/ui/DropDown';
 import Button from '@components/ui/Button';
 import Banner from '@components/ui/Banner';
+import WeatherWidget from './WeatherWidget';
 
 const Sidebar = ({ pageType, setFilteredProducts }) => {
   const brands = ['All brands', ...getStats().values.brands]
@@ -11,6 +12,7 @@ const Sidebar = ({ pageType, setFilteredProducts }) => {
   const [min, setMin] = useState(0)
   const [max, setMax] = useState(5000)
   const [isBanner, setIsBanner] = useState(true)
+  const [showWidget, setShowWidget] = useState(true);
 
   const applyFilters = () => {
       setFilteredProducts(prev => {
@@ -53,6 +55,9 @@ const Sidebar = ({ pageType, setFilteredProducts }) => {
         </div>
       </div>
       {isBanner && <Banner setIsBanner={setIsBanner}/>}
+      {showWidget && (
+        <WeatherWidget onClose={() => setShowWidget(false)} />
+      )}
     </aside>
   );
 }
