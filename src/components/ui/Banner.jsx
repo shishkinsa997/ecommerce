@@ -3,7 +3,7 @@ import { Clock, X, Play, Pause, RotateCcw  } from 'lucide-react';
 import Button from '@components/ui/Button';
 import { cn } from '@lib/utils';
 
-const Banner = ( { setIsBanner } ) => {
+const Banner = ( { setShowBanner } ) => {
   const initialTime = useMemo(() => 59 * 60 + 59, [])
   const [timer, setTimer] = useState(initialTime)
   const [isActive, setIsActive] = useState(true);
@@ -67,7 +67,7 @@ const Banner = ( { setIsBanner } ) => {
             onClick={() => setIsActive(!isActive)}>{isActive ? <Pause/> : <Play/>}</Button>
         </div>
       </div>
-      <button className='absolute top-2 right-2 flex items-center justify-center size-6' onClick={() => setIsBanner(false)}><X size={16}></X></button>
+      <button className='absolute top-2 right-2 flex items-center justify-center size-6' onClick={() => setShowBanner(false)}><X size={16}></X></button>
     </div>
   );
 };
