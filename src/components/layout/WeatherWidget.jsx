@@ -66,11 +66,11 @@ const WeatherWidget = ({ onClose }) => {
 
       const weatherData = await weatherResponse.json();
 
-      if (!isMountedRef.current) return;
-
-      setWeather(weatherData);
-      setCity(cityName);
-
+      if (isMountedRef.current) {
+        setWeather(weatherData);
+        setCity(weatherData.name);
+        setLoading(false);
+      }
     } catch (error) {
       if (error.name === 'AbortError' || !isMountedRef.current) return;
 
@@ -80,10 +80,6 @@ const WeatherWidget = ({ onClose }) => {
       } else {
         setWeatherError('Failed to get weather');
         setWeather(null);
-      }
-    } finally {
-      if (isMountedRef.current) {
-        setLoading(false);
       }
     }
   };
@@ -175,8 +171,8 @@ const WeatherWidget = ({ onClose }) => {
 
   const skeleton = (
       <>
-        <div className="animate-pulse bg-white/20 rounded-2xl m-auto w-25 h-25"></div>
         <div className="animate-pulse bg-white/20 rounded-2xl m-auto w-30 h-10"></div>
+        <div className="animate-pulse bg-white/20 rounded-2xl m-auto w-full h-23"></div>
         <div className="animate-pulse bg-white/20 rounded-2xl w-full h-35 max-lg:h-20"></div>
         <div className="animate-pulse bg-white/20 rounded-xl w-full h-12"></div>
         <div className="animate-pulse bg-white/20 rounded-xl w-full h-12"></div>
@@ -188,23 +184,28 @@ const errorMessage = (message) => {
   }
 
   return (
-    <div className="relative w-full flex flex-col gap-4 bg-indigo-500 p-3 rounded-2xl shadow-2xl text-white">
+    <div className="relative w-full flex flex-col gap-4 bg-linear-to-r from-indigo-500 to-indigo-500/80 p-3 rounded-2xl shadow-md text-white">
       {loading ? skeleton : <>
         {weather ? (
-          <div className="flex flex-col text-center gap-2">
-            <span className="text-6xl font-light">
-              {Math.round(weather.main.temp)}°C
-            </span>
-            <span className="opacity-80">
-              Feels like {Math.round(weather.main.feels_like)}°C
-            </span>
-            <div className="flex items-center justify-center gap-1 capitalize">
-              <img
-                src={`https://openweathermap.org/payload/api/media/file/${weather.weather[0].icon}.png`}
-                alt={weather.weather[0].description}
-                className="size-15"
-              />
-              <span>{weather.weather[0].description}</span>
+          <div className="flex flex-col text-center gap-4">
+            <span className='text-2xl'>{city}</span>
+            <div className='flex justify-evenly gap-2'>
+              <div className='flex flex-col gap-2'>
+                <span className="text-5xl font-light">
+                  {Math.round(weather.main.temp)}°C
+                </span>
+                <span className="text-sm opacity-70">
+                  Feels like {Math.round(weather.main.feels_like)}°C
+                </span>
+              </div>
+              <div className="flex flex-col items-center justify-center gap-1 capitalize">
+                <img
+                  src={`https://openweathermap.org/payload/api/media/file/${weather.weather[0].icon}.png`}
+                  alt={weather.weather[0].description}
+                  className=" -m-6 min-w-25 aspect-square max-sm:w-18"
+                />
+                <span className="text-sm line-clamp-2 overflow-hidden h-10 opacity-70">{weather.weather[0].description}</span>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-4 text-left bg-white/10 p-4 rounded-2xl items-center">
               <div className="flex flex-col items-center gap-1 text-sm max-lg:flex-row">
