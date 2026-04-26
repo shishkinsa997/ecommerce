@@ -20,7 +20,6 @@ const ProductGrid = ({ setCart, cart, filteredProducts }) => {
         </p>
         <p className="ml-auto">Sort by:</p>
         <Dropdown
-          placeholder="Low to High"
           items={Object.keys(sorted)}
           select={select}
           setSelect={setSelect}
