@@ -11,7 +11,7 @@ const Sidebar = ({ pageType, setFilteredProducts }) => {
   const [select, setSelect] = useState('Select brand')
   const [min, setMin] = useState(0)
   const [max, setMax] = useState(5000)
-  const [isBanner, setIsBanner] = useState(true)
+  const [showBanner, setShowBanner] = useState(true)
   const [showWidget, setShowWidget] = useState(true);
 
   const applyFilters = () => {
@@ -54,7 +54,7 @@ const Sidebar = ({ pageType, setFilteredProducts }) => {
           <Button variant='primary' onClick={applyFilters}>Apply Filters</Button>
         </div>
       </div>
-      {isBanner && <Banner setIsBanner={setIsBanner}/>}
+      {showBanner && <Banner setShowBanner={setShowBanner}/>}
       {showWidget && (
         <WeatherWidget onClose={() => setShowWidget(false)} />
       )}
