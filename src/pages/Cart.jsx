@@ -11,7 +11,6 @@ const Cart = ({ cart, setCart, setPageType }) => {
     product.count = cart[id]
     return product
   })
-  console.log(cartProducts)
   return (
     <div className="w-full h-full max-w-7xl flex flex-col gap-8">
       <h1 className="text-2xl">Shopping Cart</h1>

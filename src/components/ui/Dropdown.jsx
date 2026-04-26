@@ -37,11 +37,11 @@ const handleSelect = (item) => {
   return (
     <div className="relative flex">
     <button
-    onClick={() => toggleDropdown()}
-    className={cn( baseStyles, className, isOpen && "ring-2 ring-black" )}
-    ref={dropdownRef}
-    {...props}>
-      <span className="text-black/50 mr-auto">{!select ? placeholder : select}</span>
+      onClick={() => toggleDropdown()}
+      className={cn( baseStyles, className, isOpen && "ring-2 ring-black" )}
+      ref={dropdownRef}
+      {...props}>
+      <span className={cn("mr-auto", (select === placeholder ? 'text-black/50' : 'text-black'))}>{!select ? placeholder : select}</span>
 
       <ChevronDown
         className="my-auto ml-2 transition-transform duration-200"
