@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { getStats } from '@lib/utils';
+import { getData } from '@lib/utils';
 import DropDown from '@components/ui/DropDown';
 import Button from '@components/ui/Button';
 import Banner from '@components/ui/Banner';
 import WeatherWidget from './WeatherWidget';
 
 const Sidebar = ({ pageType, setFilteredProducts }) => {
-  const brands = ['All brands', ...getStats().values.brands]
-  const allProducts = getStats().filtered[pageType]
   const [select, setSelect] = useState('Select brand')
   const [min, setMin] = useState(0)
   const [max, setMax] = useState(5000)
   const [showBanner, setShowBanner] = useState(true)
   const [showWidget, setShowWidget] = useState(true);
+
+  const brands = ['All brands', ...getData().brands[pageType]]
+  const allProducts = getData().products[pageType]
 
   const applyFilters = () => {
       setFilteredProducts(prev => {

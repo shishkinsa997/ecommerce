@@ -1,4 +1,4 @@
-export const products = [
+export const data = [
   {
     id: 1,
     category: "tv",
@@ -296,4 +296,4 @@ export const products = [
   },
 ];
 
-export default products;
+export default data;

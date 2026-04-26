@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { getStats } from '@lib/utils';
+import { getData } from '@lib/utils';
 import Sidebar from '@components/layout/Sidebar';
 import ProductGrid from '@components/common/ProductGrid';
 
 const PhoneListing = ({ pageType, setPageType, cart, setCart }) => {
-  const [filteredProducts, setFilteredProducts] = useState(getStats().filtered[pageType] || [])
+  const [filteredProducts, setFilteredProducts] = useState(getData().products[pageType] || [])
   return (
     <>
       <Sidebar pageType={pageType} filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts}/>
