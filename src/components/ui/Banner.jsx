@@ -10,41 +10,43 @@ const Banner = ( { setShowBanner } ) => {
   const interval = useRef(null);
   const isOver = timer <= 0 && !isActive
 
+  const handleRestart  = () => {
+    if (isOver) setIsActive(true)
+    setTimer(initialTime)
+  }
+
+  const handleStartStop  = () => {
+    setIsActive(prev => !prev)
+  }
+
   useEffect(() => {
-    if (!isActive || timer <= 0) {
+
+    if (isOver) {
       clearInterval(interval.current);
       return;
     }
-    interval.current = setInterval(() => {
-      setTimer(prev => {
-        const newValue = prev - 1;
-        if (newValue <= 0) {
-          setIsActive(false);
-          return 0;
-        }
-        return newValue;
-      })
-    }, 1000);
-
+    if (isActive) {
+      interval.current = setInterval(() => {
+        setTimer(prev => {
+          if (prev - 1 < 0) {
+            setIsActive(false);
+            clearInterval(interval.current)
+            return 0;
+          }
+          return prev - 1
+        })
+      }, 1000);
+    }
     return () => clearInterval(interval.current)
-  }, [isActive, timer]);
+  }, [timer, isActive, isOver])
 
   const timerRun = (
     <span className='font-bold'>
-      {Math.floor(timer / 60 / 60)}:
+      {Math.floor(timer / 60 / 60 % 60)}:
       {Math.floor(timer / 60 % 60).toString().padStart(2, '0')}:
       {Math.floor(timer % 60).toString().padStart(2, '0')}
     </span>
   )
-
-  const handleRestart  = () => {
-    if (isOver) {
-      setTimer(initialTime)
-      setIsActive(true)
-    } else {
-      setTimer(initialTime)
-    }
-  }
 
   return (
     <div className="relative p-4 w-full text-sm h-full rounded-xl text-white bg-linear-to-r from-[#D4183D] to-[#D4183D]/80">
@@ -61,10 +63,10 @@ const Banner = ( { setShowBanner } ) => {
           {isOver ? <span>Time is over</span> : timerRun}
         </div>
         <div className='flex justify-between items-end gap-2'>
-          <Button className={cn((isOver && 'flex-1 outline-2 outline-offset-2 outline-solid bg-indigo-600'), 'flex-1')} variant='primary'
+          <Button className={cn((isOver && 'outline-2 outline-offset-2 outline-solid bg-indigo-600'), 'flex-1')} variant='primary'
             onClick={handleRestart}><RotateCcw/></Button>
-          <Button className={cn((isOver && 'flex-1 pointer-events-none text-black/50'), 'flex-1')} variant='secondary'
-            onClick={() => setIsActive(!isActive)}>{isActive ? <Pause/> : <Play/>}</Button>
+          <Button className={cn((isOver && 'pointer-events-none text-black/50'), 'flex-1')} variant='secondary'
+            onClick={handleStartStop}>{isActive ? <Pause/> : <Play/>}</Button>
         </div>
       </div>
       <button className='absolute top-2 right-2 flex items-center justify-center size-6' onClick={() => setShowBanner(false)}><X size={16}></X></button>
