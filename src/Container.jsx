@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import Header from '@components/layout/Header';
 import Button from '@components/ui/Button';
 import Footer from '@components/layout/Footer';
 import Content from '@pages/Content';
+
+const HeaderMemo = memo(Header)
+const FooterMemo = memo(Footer)
 
 const Container = () => {
 
@@ -11,7 +14,7 @@ const Container = () => {
 
   return (
     <>
-      <Header
+      <HeaderMemo
         pageType={pageType}
         setPageType={setPageType}
         cart={cart}
@@ -23,7 +26,7 @@ const Container = () => {
         cart={cart}
         setCart={setCart}
         />
-      <Footer />
+      <FooterMemo />
     </>
   )
 }
